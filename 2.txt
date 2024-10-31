@@ -1,0 +1,1 @@
+["Semenenko", "Protskova", "Suslo", "Kravchenko", "Zavadska"]

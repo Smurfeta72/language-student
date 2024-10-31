@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список мов і студентів</title>
+    <style>
+        /* Стилізація для жовтого блоку */
+        #content {
+            background-color: yellow;
+            padding: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Список мов і студентів</h1>
+    <a href="#" id="languages">Мови</a> | <a href="#" id="students">Студенти</a>
+    
+    <div id="content">
+        Натисніть на посилання, щоб побачити список.
+    </div>
+    
+    <script>
+        // Функція для завантаження даних з файлу
+        async function loadFile(file) {
+            const response = await fetch(file);
+            if (!response.ok) {
+                throw new Error('Помилка завантаження файлу');
+            }
+            return await response.json();
+        }
+        
+        // Елементи посилань і контенту
+        const contentDiv = document.getElementById('content');
+        const languagesLink = document.getElementById('languages');
+        const studentsLink = document.getElementById('students');
+        
+        // Обробка натискання на "Мови"
+        languagesLink.addEventListener('click', async (event) => {
+            event.preventDefault();
+            try {
+                const languages = await loadFile('1.txt');
+                contentDiv.innerHTML = `<ul>${languages.map(lang => `<li>${lang}</li>`).join('')}</ul>`;
+            } catch (error) {
+                contentDiv.textContent = error.message;
+            }
+        });
+        
+        // Обробка натискання на "Студенти"
+        studentsLink.addEventListener('click', async (event) => {
+            event.preventDefault();
+            try {
+                const students = await loadFile('2.txt');
+                contentDiv.innerHTML = `<ul>${students.map(student => `<li>${student}</li>`).join('')}</ul>`;
+            } catch (error) {
+                contentDiv.textContent = error.message;
+            }
+        });
+    </script>
+</body>
+</html>
