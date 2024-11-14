@@ -1,1 +1,1 @@
-["Bondarenko, Koval, Melnuk, Shevchenko, Tkachuk"]
+["Bondarenko", "Koval", "Melnuk", "Shevchenko", "Tkachuk"]
